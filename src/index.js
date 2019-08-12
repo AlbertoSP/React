@@ -1,7 +1,9 @@
 const express = require('express');
 
 const morgan = require('morgan');
+const path = require('path');
 const app = express();
+
 //configuracion
 app.set('port', process.env.PORT || 3000)
 //middlewares
@@ -11,9 +13,11 @@ app.use(express.json());
 
 //rutas
 
-app.use(require('./routes/tareas.routes'))
+app.use('/api/tasks', require('./routes/tareas.routes'));
+
 //static files
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 
